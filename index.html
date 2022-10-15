@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Vue Js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h2 class="title">Counter</h2>
+        <div class="counter-wrapper container">
+            <h1 class="counter-title">Counter Vue App</h1>
+            <h2 class="count">{{count}}</h2>
+            <div class="buttons">
+                <button @click="increment" class="increment">Increment</button>
+                <button @click="decrement" class="decrement">Decrement</button>
+            </div>
+        </div>
+        <hr>
+        <h2 class="title">Form</h2>
+        <div class="form container">
+            <form @submit.prevent="handleSumbit">
+                <label for="fname">First Name</label>
+                <input v-model.stop="fname" type="text" id="fname">
+                <label for="lname">Last Name</label>
+                <input v-model.stop="lname" type="text" id="lname">
+                <input type="submit" value="Submit">
+            </form>
+            <div class="your-name result" v-if="fullName != ''">Welcome to {{fullName}}!</div>
+        </div>
+        <hr>
+        <h2 class="title">List Array</h2>
+        <div class="container">
+            <div class="add-skil">
+                <div class="input-group">
+                    <input type="text" v-model="newSkilArr" placeholder="Add New Skil">
+                    <button @click="handleAddWArr">Add</button>
+                </div>
+            </div>
+            <h3>Skils</h3>
+            <ul>
+                <li class="skil-item" v-for="(skil, index) in skils" :key="skil">{{index + 1}}. {{skil}}<span
+                        @click="handleRemoveWArr(index)" class="close">x</span></li>
+            </ul>
+        </div>
+        <hr>
+        <h2 class="title">List Object</h2>
+        <div class="container">
+            <div class="add-skil">
+                <div class="input-group">
+                    <input type="text" v-model="newSkil" placeholder="Add New Skil">
+                    <button @click="handleAdd">Add</button>
+                </div>
+            </div>
+            <h3>Skils</h3>
+            <ul>
+                <li v-for="(skil, key, index) in skilsObj" :key="skil.name" class="skil-item">
+                    {{index + 1}}. {{skil}}
+                    <span @click="handleClose(key)" class="close">x</span>
+                </li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
